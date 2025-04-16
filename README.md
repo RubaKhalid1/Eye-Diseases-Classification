@@ -11,35 +11,24 @@ The dataset has 10 clasess: Diabetic Retinopathy, Glaucoma, Macular Scar, Optic 
 
 ![image](download.png)
  
-### Dataset after Augmentation:
-
-![image](6044270208685819072.jpg)
 
 ## Model
-This project aims to classify 10 types of eye diseases using a convolutional neural network based on VGG16, a pre-trained model. Leveraging transfer learning, the model reuses the powerful feature extraction capabilities of VGG16 while fine-tuning its deeper layers to adapt to the specific task of retinal image classification.
-The model takes an input image of size (224, 224, 3), which aligns with the expected input shape of VGG16. The dataset consists of 12,075 training images and 3,010 validation images, ensuring a robust foundation for model learning and evaluation. To enhance performance and generalization, the training data is augmented with transformations such as rotation, zoom, and shifting. 
-The original classification head of VGG16 is replaced with custom dense layers to suit the 10-class output. Only the last block (block5) of VGG16 is unfrozen and trained, while the rest of the network remains frozen to preserve learned features.
-The model is trained using the Adam optimizer and categorical cross-entropy loss, with performance evaluated through accuracy. 
-### Model Plote
-![image](download1.png)
+The model is a deep learning architecture built for multi-class image classification. We use a pre-trained DenseNet121 as its feature extractor, which allows it to benefit from the rich feature representations learned from the large-scale ImageNet dataset. The input to the model is an image with shape (224, 224, 3), representing a standard-sized RGB image.
+On top of the DenseNet121 base, the model includes normalization, dense layers, dropout for regularization, and a final softmax layer to classify the images into multiple categories. It is compiled with categorical cross-entropy loss and optimized using the Adamax optimizer with a low learning rate, ensuring stable convergence during training.
+This design enables the model to effectively learn complex patterns in medical images while maintaining good generalization to new data.
 
 ## Results
-The model was trained for a total of 20 epochs, and the results at epoch 20 demonstrated the best overall performance and balance between learning and generalization:
+The model was trained over 20 epochs, and the performance metrics at the final epoch indicate strong learning and generalization on the eye disease classification task:
+Training Accuracy: 97.49%
 
-Training Accuracy: 95.8%
+Validation Accuracy: 92.67%
 
-Validation Accuracy: 86.35%
+Test Accuracy: 92.91%
 
-Validation Loss: 0.6657
+These results suggest that the model has effectively learned the features from the training data while maintaining strong generalization to unseen data. The close alignment between validation and test accuracy reflects a well-trained and balanced model with no overfitting.
 
-At epoch 20, the model reached its highest validation accuracy and one of the lowest validation losses across the entire training process. This suggests that the model not only learned the training data effectively but also generalized well to unseen validation data a critical indicator of model robustness.
 
-Training Accuracy: 
-
-Achieving a training accuracy of 95.8% means that the model was able to correctly classify the vast majority of the training images. This high accuracy reflects the model's ability to learn intricate patterns and features relevant to the classification of 10 distinct eye diseases. It also indicates that the network's parameters were well-optimized, minimizing classification errors on the training set.
-Such performance highlights the effectiveness of using a pre-trained VGG16 backbone along with fine-tuning and data augmentation strategies, resulting in a model capable of distinguishing between subtle variations in medical images with high precision.
-
-### Predication
+### Prediction
 ![image](download2.png) 
 ![image](download3.png) 
 
